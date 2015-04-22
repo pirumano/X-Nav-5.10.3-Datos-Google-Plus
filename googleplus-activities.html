@@ -43,7 +43,8 @@
       function makeApiCall() {
         gapi.client.load('plus', 'v1', function() {
           var request = gapi.client.plus.people.get({
-            'userId': '108086881826934773478'
+            'userId': '108086881826934773478',
+            'activity': 'public'
             // For instance: 
             // 'userId': '+GregorioRobles'
           });
@@ -59,7 +60,8 @@
         });
         gapi.client.load('plus', 'v1', function() {
           var request = gapi.client.plus.people.get({
-            'userId': '103846222472267112072'
+            'userId': '103846222472267112072',
+            'activity': 'public'
             // For instance: 
             // 'userId': '+GregorioRobles'
           });
