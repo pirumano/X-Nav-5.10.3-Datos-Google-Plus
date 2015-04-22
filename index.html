@@ -49,13 +49,33 @@
             // 'userId': '+GregorioRobles'
           });
           request.execute(function(resp) {
-            var heading = document.createElement('h4');
+            var heading = document.createElement('h3');
             var image = document.createElement('img');
             image.src = resp.image.url;
             heading.appendChild(image);
             heading.appendChild(document.createTextNode(resp.displayName));
 
             document.getElementById('content').appendChild(heading);
+          });
+          var request = gapi.client.plus.activities.list({
+            'userId': '108086881826934773478',
+            'collection': 'public'
+          });
+          request.execute(function(resp2) {
+			  	var textActi = document.createElement('h3');
+				textActi.appendChild(document.createTextNode("Activities"));
+				document.getElementById('content').appendChild(textActi);
+				for(i = 0; i < resp2.items.length; i++){
+					var titleAct1 = document.createElement('h4');
+					titleAct1.appendChild(document.createTextNode(resp2.items[i].title));
+					document.getElementById('content').appendChild(titleAct1);
+					var geo1 = document.createElement('h5');
+					if(resp2.items[i].location != undefined){
+						geo1.appendChild(document.createTextNode("Activity Position: " + resp2.items[i].location.position.latitude + " " 
+																+ resp2.items[i].location.position.longitude));
+						document.getElementById('content').appendChild(geo1);						
+					}
+				 }
           });
         });
         gapi.client.load('plus', 'v1', function() {
@@ -66,19 +86,42 @@
             // 'userId': '+GregorioRobles'
           });
           request.execute(function(resp) {
-            var heading = document.createElement('h4');
+            var heading = document.createElement('h3');
             var image = document.createElement('img');
             image.src = resp.image.url;
             heading.appendChild(image);
             heading.appendChild(document.createTextNode(resp.displayName));
             document.getElementById('content2').appendChild(heading);
           });
+		  var request = gapi.client.plus.activities.list({
+            'userId': '103846222472267112072',
+            'collection': 'public'
+          });
+          request.execute(function(resp2) {
+			  	var textActi = document.createElement('h3');
+				textActi.appendChild(document.createTextNode("Activities"));
+				document.getElementById('content2').appendChild(textActi);
+				for(i = 0; i < resp2.items.length; i++){
+					var titleAct1 = document.createElement('h4');
+					titleAct1.appendChild(document.createTextNode(resp2.items[i].title));
+					document.getElementById('content2').appendChild(titleAct1);
+					var geo1 = document.createElement('h5');
+					if(resp2.items[i].location != undefined){
+						geo1.appendChild(document.createTextNode("Activity Position: " + resp2.items[i].location.position.latitude + " " 
+																+ resp2.items[i].location.position.longitude));
+						document.getElementById('content2').appendChild(geo1);						
+					}
+				 }
+          });
         });
       }
+      
+      function handleActivity(){
+		  alert("hola");
+	  }
     </script>
     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
     <div id="content"></div>
     <div id="content2"></div>
-    <p>Retrieves your profile name (and picture) using the Google Plus API.</p>
   </body>
 </html>
