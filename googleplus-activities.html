@@ -56,26 +56,27 @@
 
             document.getElementById('content').appendChild(heading);
           });
-
+        });
+        gapi.client.load('plus', 'v1', function() {
           var request = gapi.client.plus.people.get({
             'userId': '103846222472267112072'
             // For instance: 
             // 'userId': '+GregorioRobles'
           });
-          request.execute(function(resp2) {
-            var heading2 = document.createElement('h4');
-            var image2 = document.createElement('img');
-            image2.src = resp2.image.url;
-            heading2.appendChild(image);
-            heading2.appendChild(document.createTextNode(resp2.displayName));
-
-            document.getElementById('content').appendChild(heading2);
+          request.execute(function(resp) {
+            var heading = document.createElement('h4');
+            var image = document.createElement('img');
+            image.src = resp.image.url;
+            heading.appendChild(image);
+            heading.appendChild(document.createTextNode(resp.displayName));
+            document.getElementById('content2').appendChild(heading);
           });
         });
       }
     </script>
     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
     <div id="content"></div>
+    <div id="content2"></div>
     <p>Retrieves your profile name (and picture) using the Google Plus API.</p>
   </body>
 </html>
